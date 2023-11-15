@@ -12,6 +12,7 @@
     <properties>
         <java.version>17</java.version>
         <hilla.version>2.3.3</hilla.version>
+        <version.ai.timefold.solver>1.4.0</version.ai.timefold.solver>
     </properties>
 
     <parent>
@@ -29,6 +30,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+                    <dependency>
+                        <groupId>ai.timefold.solver</groupId>
+                        <artifactId>timefold-solver-bom</artifactId>
+                        <version>${version.ai.timefold.solver}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -58,7 +67,6 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
