@@ -1,17 +1,34 @@
 package com.example.application.data;
 
+import com.example.application.domain.rooms.Room;
+import com.example.application.domain.rooms.RoomRepository;
+import com.example.application.domain.tutors.Lesson;
+import com.example.application.domain.tutors.LessonRepository;
+import com.example.application.events.TimeSlotRepository;
+import com.example.application.events.Timeslot;
 import com.example.application.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import com.example.application.project.Project;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Component
 @RequiredArgsConstructor
 public class DatabaseInit implements CommandLineRunner {
     private final ProjectRepository projectRepository;
+
+    private final TimeSlotRepository timeslotRepository;
+    private final RoomRepository roomRepository;
+    private final LessonRepository lessonRepository;
+
+
+    private DemoData demoData;
     @Override
     public void run(String... args) throws Exception {
 
@@ -33,16 +50,7 @@ public class DatabaseInit implements CommandLineRunner {
 
             projectRepository.save(project);
 
-        }
-        Value("${timeTable.demoData:SMALL}")
-        private DemoData demoData;
 
-        @Bean
-        public CommandLineRunner demoData(
-                TimeslotRepository timeslotRepository,
-                RoomRepository roomRepository,
-                LessonRepository lessonRepository) {
-            return (args) -> {
                 if (demoData == DemoData.NONE) {
                     return;
                 }
@@ -202,4 +210,4 @@ public class DatabaseInit implements CommandLineRunner {
 
 
     }
-}
+
