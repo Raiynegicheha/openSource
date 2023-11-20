@@ -1,6 +1,10 @@
 package com.example.application.solver;
 
 import ai.timefold.solver.test.api.score.stream.ConstraintVerifier;
+import com.example.application.domain.rooms.Room;
+import com.example.application.domain.timeTable.TimeTable;
+import com.example.application.domain.tutors.Lesson;
+import com.example.application.events.Timeslot;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +33,8 @@ class TimeTableConstraintProviderTest {
         constraintVerifier.verifyThat(TimeTableConstraintProvider::roomConflict)
                 .given(firstLesson, conflictingLesson, nonConflictingLesson)
                 .penalizesBy(1);
+
+        System.out.println("roomConflict passed");
     }
 
     @Test
@@ -40,6 +46,7 @@ class TimeTableConstraintProviderTest {
         constraintVerifier.verifyThat(TimeTableConstraintProvider::teacherConflict)
                 .given(firstLesson, conflictingLesson, nonConflictingLesson)
                 .penalizesBy(1);
+        System.out.println("teacherConflict passed");
     }
 
     @Test
@@ -51,6 +58,8 @@ class TimeTableConstraintProviderTest {
         constraintVerifier.verifyThat(TimeTableConstraintProvider::studentGroupConflict)
                 .given(firstLesson, conflictingLesson, nonConflictingLesson)
                 .penalizesBy(1);
+
+        System.out.println("studentGroupConflict passed");
     }
 
     @Test
@@ -62,6 +71,8 @@ class TimeTableConstraintProviderTest {
         constraintVerifier.verifyThat(TimeTableConstraintProvider::teacherRoomStability)
                 .given(lessonInFirstRoom, lessonInDifferentRoom, lessonInSameRoom)
                 .penalizesBy(2);
+
+        System.out.println("teacherRoomStability passed");
     }
 
     @Test
@@ -74,6 +85,8 @@ class TimeTableConstraintProviderTest {
         constraintVerifier.verifyThat(TimeTableConstraintProvider::teacherTimeEfficiency)
                 .given(singleLessonOnMonday, firstTuesdayLesson, secondTuesdayLesson, thirdTuesdayLessonWithGap)
                 .rewardsWith(1); // Second tuesday lesson immediately follows the first.
+
+        System.out.println("teacherTimeEfficiency passed");
     }
 
     @Test
@@ -89,8 +102,9 @@ class TimeTableConstraintProviderTest {
                 .given(mondayLesson, firstTuesdayLesson, secondTuesdayLesson, thirdTuesdayLessonWithDifferentSubject,
                         lessonInAnotherGroup)
                 .penalizesBy(1); // Second tuesday lesson immediately follows the first.
+
+        System.out.println("studentGroupSubjectVariety passed");
     }
 
 }
 
-//Generated with love by TestMe :) Please report issues and submit feature requests at: https://weirddev.com/forum#!/testme
