@@ -22,6 +22,7 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 teacherRoomStability(constraintFactory),
                 teacherTimeEfficiency(constraintFactory),
                 studentGroupSubjectVariety(constraintFactory)
+
         };
     }
 
@@ -100,6 +101,8 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 .penalize(HardSoftScore.ONE_SOFT)
                 .asConstraint("Student group subject variety");
     }
+
+
 
 
 

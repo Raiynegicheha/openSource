@@ -34,5 +34,7 @@ public class DatabaseInit implements CommandLineRunner {
             projectRepository.save(project);
 
         }
+
+
     }
 }
